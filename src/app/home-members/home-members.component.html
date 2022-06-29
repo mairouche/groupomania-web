@@ -8,7 +8,9 @@
     <div class="row" *ngFor="let member of members">
       <div class="col">
         <div class="member">
-          <i class="fa-solid fa-user-lock"></i> {{ member.name }} -
+          <i class="fa-solid fa-user-lock" *ngIf="member.role == 'Admin'"></i>
+          <i class="fa-solid fa-user" *ngIf="member.role == 'Member'"></i>
+          {{ member.name }} -
           <span class="role">{{ member.role }}</span>
         </div>
       </div>
