@@ -5,43 +5,11 @@
         <div class="title">Nos membres</div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngFor="let member of members">
       <div class="col">
         <div class="member">
-          <i class="fa-solid fa-user-lock"></i> Sylvain Airouche -
-          <span class="role">Admin</span>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="member">
-          <i class="fa-solid fa-user"></i> Jessica Alba -
-          <span class="role">User</span>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="member">
-          <i class="fa-solid fa-user"></i> Amber Heard -
-          <span class="role">User</span>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="member">
-          <i class="fa-solid fa-user"></i> Scarlett Johansson -
-          <span class="role">User</span>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="member">
-          <i class="fa-solid fa-user"></i> Emilia Clarck -
-          <span class="role">User</span>
+          <i class="fa-solid fa-user-lock"></i> {{ member.name }} -
+          <span class="role">{{ member.role }}</span>
         </div>
       </div>
     </div>
