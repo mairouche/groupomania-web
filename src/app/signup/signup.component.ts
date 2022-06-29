@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SignupService } from './service/signup.service';
 
@@ -10,6 +10,7 @@ import { SignupService } from './service/signup.service';
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
+  submitted = false;
 
   constructor(
     public fb: FormBuilder,
@@ -17,18 +18,29 @@ export class SignupComponent implements OnInit {
     public router: Router
   ) {
     this.signupForm = this.fb.group({
-      name: [''],
-      email: [''],
-      password: [''],
+      name: ['', Validators.minLength(3)],
+      email: ['', [Validators.required, Validators.email]],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$'),
+        ],
+      ],
     });
   }
 
   ngOnInit(): void {}
 
   registerUser() {
-    this.signupService.signUp(this.signupForm.value).subscribe((data) => {
-      this.signupForm.reset();
-      this.router.navigate(['signin'], { queryParams: { userCreated: true } });
-    });
+    this.submitted = true;
+    if (this.signupForm.valid) {
+      this.signupService.signUp(this.signupForm.value).subscribe((data) => {
+        this.signupForm.reset();
+        this.router.navigate(['signin'], {
+          queryParams: { userCreated: true },
+        });
+      });
+    }
   }
 }

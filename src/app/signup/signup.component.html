@@ -55,6 +55,17 @@
                       required
                     />
                   </div>
+                  <div
+                    *ngIf="
+                      ((signupForm.controls['name'].touched || submitted) &&
+                        signupForm.controls['name'].errors?.required) ||
+                      ((signupForm.controls['name'].touched || submitted) &&
+                        signupForm.controls['name'].errors?.minlength)
+                    "
+                    class="alert alert-danger"
+                  >
+                    Veuillez saisir au moins 3 caractères
+                  </div>
                   <div class="form-group pb-4">
                     <i class="fa-solid fa-envelope"></i>
                     <input
@@ -66,6 +77,17 @@
                       required
                     />
                   </div>
+                  <div
+                    *ngIf="
+                      ((signupForm.controls['email'].touched || submitted) &&
+                        signupForm.controls['email'].errors?.required) ||
+                      ((signupForm.controls['email'].touched || submitted) &&
+                        signupForm.controls['email'].errors?.email)
+                    "
+                    class="alert alert-danger"
+                  >
+                    Veuillez saisir un email valide
+                  </div>
                   <div class="form-group pb-4">
                     <i class="fa-solid fa-lock"></i>
                     <input
@@ -76,6 +98,18 @@
                       placeholder="Mot de passe"
                       required
                     />
+                  </div>
+                  <div
+                    *ngIf="
+                      ((signupForm.controls['password'].touched || submitted) &&
+                        signupForm.controls['password'].errors?.required) ||
+                      ((signupForm.controls['password'].touched || submitted) &&
+                        signupForm.controls['password'].errors?.pattern)
+                    "
+                    class="alert alert-danger"
+                  >
+                    Veuillez saisir un mot de passe avec 8 caractères, une
+                    lettre majuscule
                   </div>
                   <div class="form-button text-end">
                     <a

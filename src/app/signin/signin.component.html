@@ -43,7 +43,7 @@
             </div>
             <div class="row">
               <div class="col">
-                <form [formGroup]="signinForm" (ngSubmit)="signin()">
+                <form [formGroup]="signinForm" (ngSubmit)="signin()" novalidate>
                   <div class="form-group pb-4">
                     <i class="fa-solid fa-envelope"></i>
                     <input
@@ -54,6 +54,17 @@
                       placeholder="Email"
                     />
                   </div>
+                  <div
+                    *ngIf="
+                      ((signinForm.controls['email'].touched || submitted) &&
+                        signinForm.controls['email'].errors?.required) ||
+                      ((signinForm.controls['email'].touched || submitted) &&
+                        signinForm.controls['email'].errors?.email)
+                    "
+                    class="alert alert-danger"
+                  >
+                    Veuillez saisir un email valide
+                  </div>
                   <div class="form-group pb-3">
                     <i class="fa-solid fa-lock"></i>
                     <input
@@ -63,6 +74,15 @@
                       id="password"
                       placeholder="Mot de passe"
                     />
+                  </div>
+                  <div
+                    *ngIf="
+                      submitted &&
+                      signinForm.controls['password'].errors?.required
+                    "
+                    class="alert alert-danger"
+                  >
+                    Veuillez saisir votre mot de passe
                   </div>
                   <div class="pb-3">
                     <span class="errorMessage">{{

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 
@@ -13,6 +13,7 @@ export class SigninComponent implements OnInit {
   signinNextRoute: string = 'home';
   siginErrorMessage: string = '';
   userCreatedValidationMessage: String = '';
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -20,8 +21,8 @@ export class SigninComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.signinForm = this.fb.group({
-      email: [''],
-      password: [''],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
     });
   }
 
@@ -35,10 +36,13 @@ export class SigninComponent implements OnInit {
   }
 
   signin() {
-    this.authenticationService
-      .signIn(this.signinForm.value, this.signinNextRoute)
-      .subscribe((res) => {
-        if (!res) this.siginErrorMessage = 'Email ou mot de passe erroné';
-      });
+    this.submitted = true;
+    if (this.signinForm.valid) {
+      this.authenticationService
+        .signIn(this.signinForm.value, this.signinNextRoute)
+        .subscribe((res) => {
+          if (!res) this.siginErrorMessage = 'Email ou mot de passe erroné';
+        });
+    }
   }
 }
