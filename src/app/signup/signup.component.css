@@ -1,0 +1,35 @@
+.signup-wrapper {
+  width: 100%;
+  height: 100%;
+  background-color: #e75348;
+}
+
+.signup-box {
+  min-width: 800px;
+  max-width: 1000px;
+}
+
+.signup-box-cell {
+  border-right: 1px solid #e5e5e5;
+}
+
+.signup-box p {
+  font-weight: 500;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 0 0 5px 0;
+  border-bottom: 2px solid #e44d3a;
+}
+
+.form-group input {
+  padding-left: 35px;
+}
+
+.form-group i {
+  position: absolute;
+  padding: 10px 0 0 10px;
+  color: #ced4da;
+}

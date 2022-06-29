@@ -1,0 +1,21 @@
+/* You can add global styles to this file, and also import other style files */
+body,
+html {
+  height: 100%;
+}
+
+.btn-groupomania {
+  background-color: #e75348 !important;
+  color: #ffffff !important;
+  padding: 5px !important;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-groupomania-inverse {
+  background-color: #e5e5e5 !important;
+  color: #000000 !important;
+  padding: 5px !important;
+  font-size: 14px;
+  font-weight: 500;
+}

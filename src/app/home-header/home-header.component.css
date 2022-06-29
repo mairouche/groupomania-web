@@ -1,0 +1,19 @@
+.home-header-wrapper {
+  background-color: #e75348;
+}
+
+.user-section {
+  height: 50px;
+  padding-top: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-left: 1px solid #dd3e2b;
+  border-right: 1px solid #dd3e2b;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.user-section i {
+  padding-left: 8px;
+}

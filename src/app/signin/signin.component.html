@@ -1,0 +1,90 @@
+<div
+  class="signin-wrapper d-flex align-items-center flex-column justify-content-center"
+>
+  <div class="signin-box bg-white shadow-sm rounded p-5">
+    <div class="row">
+      <div class="col-6 signin-box-cell">
+        <div class="row">
+          <div class="col pb-5">
+            <img
+              src="../../assets/img/groupomania-logo.png"
+              class="img-fuild"
+            />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col pb-5">
+            <p>
+              Groupomania est un réseau social de partage de contenu pour
+              développeurs web amateurs et professionnels. Suivez vos
+              développeurs préférés et interagissez avec eux !
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <img
+              src="../../assets/img/groupomania-illustration.png"
+              class="img-fuild"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="row">
+          <div class="col text-end pb-5">&nbsp;</div>
+        </div>
+        <div class="row">
+          <div class="col ps-4">
+            <div class="row">
+              <div class="col pb-5">
+                <span class="title">Connexion</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <form [formGroup]="signinForm" (ngSubmit)="signin()">
+                  <div class="form-group pb-4">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input
+                      type="email"
+                      class="form-control"
+                      formControlName="email"
+                      id="email"
+                      placeholder="Email"
+                    />
+                  </div>
+                  <div class="form-group pb-3">
+                    <i class="fa-solid fa-lock"></i>
+                    <input
+                      type="password"
+                      class="form-control"
+                      formControlName="password"
+                      id="password"
+                      placeholder="Mot de passe"
+                    />
+                  </div>
+                  <div class="errorMessage pb-3">
+                    {{ siginErrorMessage || "&nbsp;" }}
+                  </div>
+                  <div class="form-button text-end">
+                    <button
+                      [routerLink]="['/', 'signup']"
+                      class="btn btn-groupomania-inverse"
+                    >
+                      Créer un compte</button
+                    >&nbsp;
+                    <button type="submit" class="btn btn-groupomania">
+                      Connexion
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>
