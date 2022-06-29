@@ -33,6 +33,11 @@ export class AuthenticationService {
     return JSON.parse(currentUser)?.token;
   }
 
+  getCurrentUser(): User {
+    let userInLocalStorage: any = localStorage.getItem('currentUser');
+    return JSON.parse(userInLocalStorage);
+  }
+
   get isLoggedIn(): boolean {
     let currentUser: any = localStorage.getItem('currentUser');
     return currentUser !== null && currentUser !== undefined ? true : false;

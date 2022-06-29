@@ -3,4 +3,5 @@ export class User {
   name!: String;
   email!: String;
   token!: String;
+  role!: String;
 }

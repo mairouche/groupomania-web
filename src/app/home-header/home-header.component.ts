@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../signin/models/user.model';
+import { AuthenticationService } from '../signin/services/authentication.service';
 
 @Component({
   selector: 'app-home-header',
@@ -7,7 +9,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-header.component.css'],
 })
 export class HomeHeaderComponent implements OnInit {
-  constructor(private router: Router) {}
+  currentUser!: User;
+
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {
+    this.currentUser = authenticationService.getCurrentUser();
+  }
 
   ngOnInit(): void {}
 

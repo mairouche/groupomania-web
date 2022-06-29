@@ -12,7 +12,8 @@
       <div class="col-8">&nbsp;</div>
       <div class="col-2 text-center">
         <div class="user-section" (click)="logout()">
-          Meidi Airouche <i class="fa-solid fa-power-off"></i>
+          {{ currentUser.name }} - {{ currentUser.role }}
+          <i class="fa-solid fa-power-off"></i>
         </div>
       </div>
     </div>
