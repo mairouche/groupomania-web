@@ -64,8 +64,13 @@
                       placeholder="Mot de passe"
                     />
                   </div>
-                  <div class="errorMessage pb-3">
-                    {{ siginErrorMessage || "&nbsp;" }}
+                  <div class="pb-3">
+                    <span class="errorMessage">{{
+                      siginErrorMessage || "&nbsp;"
+                    }}</span>
+                    <span class="validationMessage">{{
+                      userCreatedValidationMessage || "&nbsp;"
+                    }}</span>
                   </div>
                   <div class="form-button text-end">
                     <a

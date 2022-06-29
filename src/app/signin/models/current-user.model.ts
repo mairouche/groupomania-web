@@ -1,4 +1,4 @@
-export class User {
+export class CurrentUser {
   _id!: String;
   name!: String;
   email!: String;

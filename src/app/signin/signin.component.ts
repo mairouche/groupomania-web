@@ -12,6 +12,7 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   signinNextRoute: string = 'home';
   siginErrorMessage: string = '';
+  userCreatedValidationMessage: String = '';
 
   constructor(
     private fb: FormBuilder,
@@ -27,6 +28,9 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       if (params.loggedOut) this.siginErrorMessage = 'Veuillez vous connecter';
+      if (params.userCreated)
+        this.userCreatedValidationMessage =
+          'Utilisateur créé. Veuillez vous connecter';
     });
   }
 

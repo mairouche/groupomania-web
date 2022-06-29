@@ -39,3 +39,9 @@
   color: #e44d3a;
   font-style: italic;
 }
+
+.validationMessage {
+  font-size: 12px;
+  color: green;
+  font-style: italic;
+}

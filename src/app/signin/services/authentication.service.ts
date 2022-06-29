@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { User } from '../models/user.model';
+import { CurrentUser } from '../models/current-user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +14,9 @@ export class AuthenticationService {
 
   signIn(credential: Credential, nextRoute: String): Observable<Boolean> {
     return this.http
-      .post<User>(`${environment.backendUrl}/auth/login`, credential)
+      .post<CurrentUser>(`${environment.backendUrl}/auth/login`, credential)
       .pipe(
-        map((signedUser: User) => {
+        map((signedUser: CurrentUser) => {
           if (signedUser != null) {
             localStorage.setItem('currentUser', JSON.stringify(signedUser));
             this.router.navigate([nextRoute]);
@@ -33,7 +33,7 @@ export class AuthenticationService {
     return JSON.parse(currentUser)?.token;
   }
 
-  getCurrentUser(): User {
+  getCurrentUser(): CurrentUser {
     let userInLocalStorage: any = localStorage.getItem('currentUser');
     return JSON.parse(userInLocalStorage);
   }
