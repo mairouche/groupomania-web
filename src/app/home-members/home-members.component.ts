@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { catchError, map } from 'rxjs/operators';
 import { Member } from './model/member.model';
+import { environment } from 'src/environments/environment';
 import { MemberService } from './service/member.service';
 
 @Component({
@@ -10,8 +11,11 @@ import { MemberService } from './service/member.service';
 })
 export class HomeMembersComponent implements OnInit {
   members!: Member[];
+  environment;
 
-  constructor(private memberService: MemberService) {}
+  constructor(private memberService: MemberService) {
+    this.environment = environment;
+  }
 
   ngOnInit(): void {
     this.memberService
