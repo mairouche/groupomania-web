@@ -1,13 +1,31 @@
 <div class="post-form-wrapper">
   <div class="post-form-box bg-white shadow-sm">
     <div class="post-form-content p-3">
-      <form>
+      <form
+        [formGroup]="postForm"
+        (ngSubmit)="onSubmit()"
+        enctype="multipart/form-data"
+      >
         <div class="form-group">
           <label for="postContent">Nouveau post :</label>
-          <textarea class="form-control" id="postContent" rows="3"></textarea>
+          <textarea
+            class="form-control"
+            id="postContent"
+            rows="3"
+            formControlName="postContent"
+            required
+          ></textarea>
         </div>
         <div class="form-group pt-3">
-          <input type="file" class="form-control-file" id="postImage" />
+          <input
+            type="file"
+            class="form-control-file"
+            id="postImage"
+            formControlName="postImage"
+            accept=".png, .jpg, .jpeg, .gif"
+            (change)="onFileChange($event)"
+            required
+          />
         </div>
         <div class="form-button text-end pt-3">
           <button type="submit" class="btn btn-groupomania">Créer</button>

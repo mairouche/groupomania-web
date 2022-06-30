@@ -5,11 +5,13 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CurrentUser } from '../models/current-user.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+  jwtHelper = new JwtHelperService();
   constructor(private http: HttpClient, public router: Router) {}
 
   signIn(credential: Credential, nextRoute: String): Observable<Boolean> {
@@ -40,6 +42,10 @@ export class AuthenticationService {
 
   get isLoggedIn(): boolean {
     let currentUser: any = localStorage.getItem('currentUser');
-    return currentUser !== null && currentUser !== undefined ? true : false;
+    return currentUser !== null &&
+      currentUser !== undefined &&
+      !this.jwtHelper.isTokenExpired(JSON.parse(currentUser).token)
+      ? true
+      : false;
   }
 }
