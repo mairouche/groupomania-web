@@ -16,7 +16,7 @@
             required
           ></textarea>
         </div>
-        <div class="form-group pt-3">
+        <div class="form-group pt-3 pb-3">
           <input
             type="file"
             class="form-control-file"
@@ -26,6 +26,17 @@
             (change)="onFileChange($event)"
             required
           />
+        </div>
+        <div
+          *ngIf="
+            ((postForm.controls['postContent'].touched || submitted) &&
+              postForm.controls['postContent'].errors?.required) ||
+            ((postForm.controls['postImage'].touched || submitted) &&
+              postForm.controls['postImage'].errors?.required)
+          "
+          class="alert alert-danger"
+        >
+          Tous les champs sont obligatoires
         </div>
         <div class="form-button text-end pt-3">
           <button type="submit" class="btn btn-groupomania">Créer</button>

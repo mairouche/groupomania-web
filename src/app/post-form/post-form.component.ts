@@ -10,6 +10,7 @@ import { PostFormService } from './service/post-form.service';
 })
 export class PostFormComponent implements OnInit {
   postForm: FormGroup;
+  submitted = false;
 
   constructor(
     public fb: FormBuilder,
@@ -35,14 +36,20 @@ export class PostFormComponent implements OnInit {
   }
 
   onSubmit() {
-    const formData = new FormData();
-    formData.append('content', this.postForm.get('postContent')?.value);
-    formData.append(
-      'authorName',
-      this.authenticationService.getCurrentUser().name
-    );
-    formData.append('image', this.postForm.get('fileSource')?.value);
+    this.submitted = true;
+    if (this.postForm.valid) {
+      const formData = new FormData();
+      formData.append('content', this.postForm.get('postContent')?.value);
+      formData.append(
+        'authorName',
+        this.authenticationService.getCurrentUser().name
+      );
+      formData.append('image', this.postForm.get('fileSource')?.value);
 
-    this.postFormService.addPost(formData).subscribe();
+      this.postFormService.addPost(formData).subscribe((success) => {
+        this.postForm.reset();
+        formData.delete;
+      });
+    }
   }
 }
