@@ -1,7 +1,7 @@
 export class CurrentUser {
-  _id!: String;
-  name!: String;
-  email!: String;
-  token!: String;
-  role!: String;
+  _id!: string;
+  name!: string;
+  email!: string;
+  token!: string;
+  role!: string;
 }

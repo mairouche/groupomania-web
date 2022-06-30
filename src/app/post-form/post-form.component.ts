@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from '../signin/services/authentication.service';
+import { PostFormService } from './service/post-form.service';
 
 @Component({
   selector: 'app-post-form',
@@ -9,7 +11,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class PostFormComponent implements OnInit {
   postForm: FormGroup;
 
-  constructor(public fb: FormBuilder) {
+  constructor(
+    public fb: FormBuilder,
+    private postFormService: PostFormService,
+    private authenticationService: AuthenticationService
+  ) {
     this.postForm = this.fb.group({
       postContent: ['', Validators.required],
       postImage: [''],
@@ -30,9 +36,13 @@ export class PostFormComponent implements OnInit {
 
   onSubmit() {
     const formData = new FormData();
-    formData.append('postContent', this.postForm.get('postContent')?.value);
-    formData.append('file', this.postForm.get('fileSource')?.value);
+    formData.append('content', this.postForm.get('postContent')?.value);
+    formData.append(
+      'authorName',
+      this.authenticationService.getCurrentUser().name
+    );
+    formData.append('image', this.postForm.get('fileSource')?.value);
 
-    console.log(formData);
+    this.postFormService.addPost(formData).subscribe();
   }
 }

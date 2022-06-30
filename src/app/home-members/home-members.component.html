@@ -10,6 +10,7 @@
         <div class="member">
           <i
             class="fa-solid fa-user-lock"
+            [ngClass]="{ admin: member.role == environment.roles.admin }"
             *ngIf="member.role == environment.roles.admin"
           ></i>
           <i
