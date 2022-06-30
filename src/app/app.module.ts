@@ -19,7 +19,8 @@ import { CommentComponent } from './comment/comment.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthGuard } from './shared/auth.guard';
+import { AuthGuard } from './shared/auth/auth.guard';
+import { SecureStaticPipe } from './shared/pipe/secure-static.pipe';
 
 const routes: Routes = [
   { path: '', redirectTo: 'signin', pathMatch: 'full' },
@@ -43,6 +44,7 @@ const routes: Routes = [
     PostComponent,
     CommentFormComponent,
     CommentComponent,
+    SecureStaticPipe,
   ],
   imports: [
     BrowserModule,

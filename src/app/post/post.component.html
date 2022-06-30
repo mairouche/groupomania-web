@@ -13,7 +13,7 @@
     <div class="row">
       <div class="col">
         <div class="post-cover pb-3">
-          <img [src]="postImage" class="img-fluid" />
+          <img [src]="postImage | secureStatic | async" class="img-fluid" />
         </div>
       </div>
     </div>
