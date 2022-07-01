@@ -2,10 +2,15 @@
   <div class="row">
     <div class="col">
       <div class="comment-author-date">
-        <span class="comment-author">Jessica Alba - </span>
-        <span class="comment-date">le 1er Juin 2022 à 16h30</span>
+        <span class="comment-author">{{ comment.authorName }} - </span>
+        <span class="comment-date" *ngIf="!isCommentToday()">{{
+          comment.creationDate | date: "le dd/mm/YYYY à HH:mm"
+        }}</span>
+        <span class="comment-date" *ngIf="isCommentToday()"
+          >aujourd'hui {{ comment.creationDate | date: " à HH:mm" }}</span
+        >
       </div>
-      <div class="comment">Top l'article !</div>
+      <div class="comment">{{ comment.content }}</div>
     </div>
   </div>
 </div>

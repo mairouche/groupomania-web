@@ -17,4 +17,9 @@ export class PostComponent implements OnInit {
   ngOnInit(): void {
     this.postImage = environment.backendUrl + '/' + this.post.image;
   }
+
+  isPostToday() {
+    if (new Date(this.post.creationDate) < new Date()) return false;
+    else return true;
+  }
 }
