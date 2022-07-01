@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from './model/post.model';
 import { environment } from 'src/environments/environment';
+import { DateHelper } from '../shared/helper/date.helper';
 
 @Component({
   selector: 'app-post',
@@ -19,7 +20,6 @@ export class PostComponent implements OnInit {
   }
 
   isPostToday() {
-    if (new Date(this.post.creationDate) < new Date()) return false;
-    else return true;
+    return DateHelper.isToday(this.post.creationDate);
   }
 }

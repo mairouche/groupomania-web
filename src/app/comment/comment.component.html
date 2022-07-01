@@ -4,7 +4,7 @@
       <div class="comment-author-date">
         <span class="comment-author">{{ comment.authorName }} - </span>
         <span class="comment-date" *ngIf="!isCommentToday()">{{
-          comment.creationDate | date: "le dd/mm/YYYY à HH:mm"
+          comment.creationDate | date: "le dd/MM/YYYY à HH:mm"
         }}</span>
         <span class="comment-date" *ngIf="isCommentToday()"
           >aujourd'hui {{ comment.creationDate | date: " à HH:mm" }}</span

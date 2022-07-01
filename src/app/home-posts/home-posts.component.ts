@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { CommentFormService } from '../comment-form/service/comment-form.service';
 import { PostFormService } from '../post-form/service/post-form.service';
 import { Post } from '../post/model/post.model';
 import { PostService } from './service/post.service';
@@ -12,14 +13,20 @@ import { PostService } from './service/post.service';
 })
 export class HomePostsComponent implements OnInit {
   posts!: Post[];
-  notifierSubscription: Subscription =
+  postSubscription: Subscription =
     this.postFormService.subjectNotifier.subscribe((notified) => {
+      this.refreshPosts();
+    });
+
+  commentSubscription: Subscription =
+    this.commentFormService.subjectNotifier.subscribe((notified) => {
       this.refreshPosts();
     });
 
   constructor(
     private postService: PostService,
-    private postFormService: PostFormService
+    private postFormService: PostFormService,
+    private commentFormService: CommentFormService
   ) {}
 
   ngOnInit(): void {

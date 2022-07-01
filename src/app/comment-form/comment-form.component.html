@@ -1,9 +1,20 @@
 <div class="comment-form-wrapper">
   <div class="comment-form-content p-3">
-    <form>
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit(postId)">
       <div class="form-group">
         <label for="commentContent">Commenter :</label>
-        <textarea class="form-control" id="commentContent" rows="2"></textarea>
+        <textarea
+          class="form-control"
+          id="commentContent"
+          formControlName="content"
+          rows="2"
+        ></textarea>
+      </div>
+      <div
+        *ngIf="submitted && commentForm.controls['content'].errors?.required"
+        class="alert alert-danger"
+      >
+        Veuillez saisir un commentaire
       </div>
       <div class="form-button text-end pt-3">
         <button type="submit" class="btn btn-groupomania">Commenter</button>

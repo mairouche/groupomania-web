@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { DateHelper } from '../shared/helper/date.helper';
 import { Comment } from './model/comment.model';
 
 @Component({
@@ -15,7 +16,6 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {}
 
   isCommentToday() {
-    if (new Date(this.comment.creationDate) < new Date()) return false;
-    else return true;
+    return DateHelper.isToday(this.comment.creationDate);
   }
 }
