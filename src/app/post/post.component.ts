@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Post } from './model/post.model';
 import { environment } from 'src/environments/environment';
 import { DateHelper } from '../shared/helper/date.helper';
+import { CurrentUser } from '../signin/models/current-user.model';
+import { AuthenticationService } from '../signin/services/authentication.service';
+import { PostService } from './service/post.service';
 
 @Component({
   selector: 'app-post',
@@ -12,8 +15,16 @@ export class PostComponent implements OnInit {
   @Input()
   post!: Post;
   postImage!: string;
+  currentUser: CurrentUser;
+  environment;
 
-  constructor() {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private postService: PostService
+  ) {
+    this.currentUser = this.authenticationService.getCurrentUser();
+    this.environment = environment;
+  }
 
   ngOnInit(): void {
     this.postImage = environment.backendUrl + '/' + this.post.image;
@@ -21,5 +32,10 @@ export class PostComponent implements OnInit {
 
   isPostToday() {
     return DateHelper.isToday(this.post.creationDate);
+  }
+
+  onDelete() {
+    if (confirm('Êtes-vous sûr de vouloir supprimer ce post ?'))
+      this.postService.delete(this.post._id).subscribe((success) => success);
   }
 }

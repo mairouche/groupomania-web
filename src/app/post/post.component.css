@@ -7,12 +7,19 @@
   font-size: 12px;
 }
 
-.post-likes-and-comments {
+.post-icon {
   color: #686868;
+}
+
+.likes-and-comment-icons {
   padding-bottom: 10px;
   border-bottom: 1px solid #eeeeee;
 }
 
 .post-comment-form {
   border-top: 1px solid #eeeeee;
+}
+
+.clickable {
+  cursor: pointer;
 }

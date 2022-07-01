@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class PostService {
+export class HomePostService {
   constructor(private http: HttpClient, public router: Router) {}
 
   list(): Observable<any> {

@@ -2,14 +2,28 @@
   <div class="post-card bg-white shadow-sm p-3">
     <div class="row">
       <div class="col">
-        <div class="post-author pb-3">
-          <span class="author">{{ post.authorName }}</span>
-          <span class="date" *ngIf="!isPostToday()">
-            - le {{ post.creationDate | date: "dd/MM/YYYY à HH:mm" }}</span
-          >
-          <span class="date" *ngIf="isPostToday()">
-            - aujourd'hui {{ post.creationDate | date: " à HH:mm" }}</span
-          >
+        <div class="row">
+          <div class="col text-start">
+            <div class="post-author pb-3">
+              <span class="author">{{ post.authorName }}</span>
+              <span class="date" *ngIf="!isPostToday()">
+                - le {{ post.creationDate | date: "dd/MM/YYYY à HH:mm" }}</span
+              >
+              <span class="date" *ngIf="isPostToday()">
+                - aujourd'hui {{ post.creationDate | date: " à HH:mm" }}</span
+              >
+            </div>
+          </div>
+          <div class="col text-end post-icon">
+            <i
+              class="fa-solid fa-trash clickable"
+              *ngIf="
+                currentUser.name == post.authorName ||
+                currentUser.role == environment.roles.admin
+              "
+              (click)="onDelete()"
+            ></i>
+          </div>
         </div>
       </div>
     </div>
@@ -31,9 +45,10 @@
     </div>
     <div class="row">
       <div class="col">
-        <div class="post-likes-and-comments text-end">
-          <i class="fa-solid fa-heart"></i> {{ post.likers.length }} &nbsp;
-          <i class="fa-solid fa-comment"></i> {{ post.comments.length }}
+        <div class="post-icon text-end likes-and-comment-icons">
+          <i class="fa-solid fa-heart clickable"></i>
+          {{ post.likers.length }} &nbsp; <i class="fa-solid fa-comment"></i>
+          {{ post.comments.length }}
         </div>
       </div>
     </div>

@@ -4,7 +4,8 @@ import { map } from 'rxjs/operators';
 import { CommentFormService } from '../comment-form/service/comment-form.service';
 import { PostFormService } from '../post-form/service/post-form.service';
 import { Post } from '../post/model/post.model';
-import { PostService } from './service/post.service';
+import { PostService } from '../post/service/post.service';
+import { HomePostService } from './service/home-post.service';
 
 @Component({
   selector: 'app-home-posts',
@@ -13,8 +14,13 @@ import { PostService } from './service/post.service';
 })
 export class HomePostsComponent implements OnInit {
   posts!: Post[];
-  postSubscription: Subscription =
+  postFormSubscription: Subscription =
     this.postFormService.subjectNotifier.subscribe((notified) => {
+      this.refreshPosts();
+    });
+
+  postDeleteSubscription: Subscription =
+    this.postService.subjectNotifier.subscribe((notified) => {
       this.refreshPosts();
     });
 
@@ -24,6 +30,7 @@ export class HomePostsComponent implements OnInit {
     });
 
   constructor(
+    private homePostService: HomePostService,
     private postService: PostService,
     private postFormService: PostFormService,
     private commentFormService: CommentFormService
@@ -34,7 +41,7 @@ export class HomePostsComponent implements OnInit {
   }
 
   refreshPosts() {
-    this.postService
+    this.homePostService
       .list()
       .pipe(
         map((data) => {
