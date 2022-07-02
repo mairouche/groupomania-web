@@ -34,6 +34,13 @@ export class PostComponent implements OnInit {
     return DateHelper.isToday(this.post.creationDate);
   }
 
+  isPostLikedByCurrentUser() {
+    const liked = this.post.likers.find((obj) => {
+      return obj._id === this.currentUser._id;
+    });
+    return liked ? true : false;
+  }
+
   onDelete() {
     if (confirm('Êtes-vous sûr de vouloir supprimer ce post ?'))
       this.postService.delete(this.post._id).subscribe((success) => success);

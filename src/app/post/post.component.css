@@ -23,3 +23,7 @@
 .clickable {
   cursor: pointer;
 }
+
+.liked {
+  color: #e75348;
+}

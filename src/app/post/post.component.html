@@ -46,7 +46,10 @@
     <div class="row">
       <div class="col">
         <div class="post-icon text-end likes-and-comment-icons">
-          <i class="fa-solid fa-heart clickable"></i>
+          <i
+            class="fa-solid fa-heart clickable"
+            [ngClass]="{ liked: isPostLikedByCurrentUser() == true }"
+          ></i>
           {{ post.likers.length }} &nbsp; <i class="fa-solid fa-comment"></i>
           {{ post.comments.length }}
         </div>
